@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap.min.js">
+</script>
+<script type='text/Javascript'>
+  var container = ''
+  $(document).ready(function(){
+     $("#b1").click(function(){
+     $.get('http://www.omdbapi.com/?apiKey=adfa54be&s='+$('#in').val(), function(data, status){
+       if (data){
+       //var result = JSON.parse(data);
+       for (var i=0; i<data.Search.length; i++){
+       container +='Title: '+ data.Search[i]['Title']+'<br>'+'Year: '+data.Search[i]['Year']+'<br>'+'Imdb_id: '+data.Search[i]['imdbID']+
+      '<br>'+ data.Search[i]['Type']+'<br>'+'<a href="http://www.imdb.com/title/'+data.Search[i]['imdbID']+'\"'+'>'+'Click for more info'+'</a>'+'<br>'+'<img src='+data.Search[i]['Poster']+'>'+'<br><br>'+'<br><br>'};
+        
+       alert(status);
+       $("#display").html(container);
+       container = ''}
+      else {
+        alert('Not Found');
+        }
+       });
+       });
+     
+     
+     
+     
+     
+    
+     
+     
+     
+     
+     
+     
+   });
+   
+ 
+ 
+
+
+
+
+
+
+</script>
+<style>
+ body {
+   background-color:black;
+   text-align:center;
+   color: gold;
+   font-family:'Times New Roman';
+   }
+ button { width:100px;
+          height:30px;
+          border-radius:10px;
+          background-color:green;
+          outline:none;
+         }
+         
+  input {
+      width:350;
+      height:35px;
+      border-radius:10px;
+      font-size:24px;
+      outline:none;
+      padding:10px;
+      }
+      
+  img {
+    width:220px;
+    height:220px;
+    margin:10px;
+    }
+  
+    
+  #g {
+    color:green;
+    }
+    
+  #b {
+    color:blue;
+    }
+    
+  #w {
+    color:white;
+    }
+    
+    
+</style>
+</head>
+<body>
+<h2><span id='g'>Collins</span> <span id='b'>Movies</span> <span id='w'>Search</span> </h2>
+<p> Search for any movie from millions of movies
+</p>
+<input type='text' id='in' placeholder="Enter Movie Title"></input>
+<br><br>
+<button id='b1'>Search</button>
+<p id='display'></p>
+</body>
+</html>
